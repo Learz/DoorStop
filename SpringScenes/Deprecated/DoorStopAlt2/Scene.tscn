@@ -1,0 +1,78 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Materials/default_env.tres" type="Environment" id=1]
+[ext_resource path="res://Models/Doorstop/doorstop_armature.tscn" type="PackedScene" id=2]
+[ext_resource path="res://SpringScenes/Deprecated/StateMachine.gd" type="Script" id=3]
+[ext_resource path="res://SpringScenes/Deprecated/DoorStop/State_Idle.gd" type="Script" id=4]
+[ext_resource path="res://SpringScenes/Deprecated/DoorStop/DoorStop.gd" type="Script" id=5]
+[ext_resource path="res://SpringScenes/Deprecated/DoorStop/SS_DoorStop.gd" type="Script" id=6]
+[ext_resource path="res://SpringScenes/Deprecated/DoorStop/State_Released.gd" type="Script" id=7]
+[ext_resource path="res://SpringScenes/Deprecated/DoorStop/State_Pulling.gd" type="Script" id=8]
+
+[sub_resource type="World" id=1]
+environment = ExtResource( 1 )
+
+[sub_resource type="SpatialMaterial" id=2]
+albedo_color = Color( 0.333333, 0.654902, 0.152941, 1 )
+
+[sub_resource type="PlaneMesh" id=3]
+material = SubResource( 2 )
+size = Vector2( 100, 100 )
+
+[node name="SS_DoorStop" type="ViewportContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+stretch = true
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Viewport" type="Viewport" parent="."]
+size = Vector2( 720, 1280 )
+own_world = true
+world = SubResource( 1 )
+handle_input_locally = false
+render_target_update_mode = 3
+
+[node name="Floor" type="MeshInstance" parent="Viewport"]
+cast_shadow = 0
+mesh = SubResource( 3 )
+material/0 = null
+
+[node name="DoorStop" parent="Viewport" instance=ExtResource( 2 )]
+script = ExtResource( 5 )
+
+[node name="StateMachine" type="Node" parent="Viewport"]
+script = ExtResource( 3 )
+
+[node name="Idle" type="Node" parent="Viewport/StateMachine"]
+script = ExtResource( 4 )
+
+[node name="Pulling" type="Node" parent="Viewport/StateMachine"]
+script = ExtResource( 8 )
+
+[node name="Released" type="Node" parent="Viewport/StateMachine"]
+script = ExtResource( 7 )
+
+[node name="TwangSFX" type="AudioStreamPlayer" parent="Viewport"]
+bus = "Mute"
+
+[node name="CameraAnchor" type="Spatial" parent="Viewport"]
+
+[node name="Camera" type="Camera" parent="Viewport/CameraAnchor"]
+transform = Transform( 1, 0, 0, 0, 0.5, 0.866026, 0, -0.866026, 0.5, 0, 90, 50 )
+environment = ExtResource( 1 )
+projection = 1
+current = true
+fov = 20.0
+size = 30.0
+far = 200.0
+
+[node name="DirectionalLight" type="DirectionalLight" parent="Viewport"]
+transform = Transform( 0.819152, -0.40558, 0.40558, 0, 0.707107, 0.707106, -0.573577, -0.579228, 0.579228, 0, 26.7011, 15.1889 )
+shadow_enabled = true
+directional_shadow_mode = 0

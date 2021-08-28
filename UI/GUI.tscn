@@ -1,0 +1,71 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://UI/GUI.gd" type="Script" id=1]
+[ext_resource path="res://Materials/Font_GUI_Big.tres" type="DynamicFont" id=2]
+[ext_resource path="res://UI/info_icon.png" type="Texture" id=3]
+[ext_resource path="res://UI/Roboto-Medium.ttf" type="DynamicFontData" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 32
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 4 )
+
+[node name="GUI" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BlindBG" type="ColorRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.392157 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="InfoButton" type="TextureRect" parent="."]
+modulate = Color( 1, 1, 1, 0.490196 )
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -100.162
+margin_top = 32.599
+margin_right = -36.1624
+margin_bottom = 96.5994
+rect_min_size = Vector2( 32, 32 )
+mouse_filter = 0
+mouse_default_cursor_shape = 2
+texture = ExtResource( 3 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FPS" type="Label" parent="."]
+margin_left = 40.0
+margin_top = 33.0
+margin_right = 269.0
+margin_bottom = 109.0
+custom_fonts/font = ExtResource( 2 )
+text = "FPS"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DebugInfo" type="Label" parent="."]
+margin_left = 42.5199
+margin_top = 108.595
+margin_right = 271.52
+margin_bottom = 184.595
+custom_fonts/font = SubResource( 1 )
+text = "Debug"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="gui_input" from="InfoButton" to="." method="_on_InfoButton_gui_input"]

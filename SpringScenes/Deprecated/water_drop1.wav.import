@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/water_drop1.wav-6b4870efd83939b4c9d18460a7a3cfce.sample"
+
+[deps]
+
+source_file="res://SpringScenes/Deprecated/water_drop1.wav"
+dest_files=[ "res://.import/water_drop1.wav-6b4870efd83939b4c9d18460a7a3cfce.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

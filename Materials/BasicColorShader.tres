@@ -1,0 +1,59 @@
+[gd_resource type="VisualShader" load_steps=4 format=2]
+
+[sub_resource type="VisualShaderNodeColorUniform" id=1]
+uniform_name = "Color"
+
+[sub_resource type="VisualShaderNodeScalarUniform" id=2]
+uniform_name = "Metallic"
+
+[sub_resource type="VisualShaderNodeScalarUniform" id=3]
+uniform_name = "Rougness"
+
+[resource]
+code = "shader_type spatial;
+render_mode specular_disabled;
+
+uniform vec4 Color : hint_color;
+uniform float Metallic;
+uniform float Rougness;
+
+
+
+void vertex() {
+// Output:0
+
+}
+
+void fragment() {
+// ColorUniform:2
+	vec3 n_out2p0 = Color.rgb;
+	float n_out2p1 = Color.a;
+
+// ScalarUniform:3
+	float n_out3p0 = Metallic;
+
+// ScalarUniform:4
+	float n_out4p0 = Rougness;
+
+// Output:0
+	ALBEDO = n_out2p0;
+	METALLIC = n_out3p0;
+	ROUGHNESS = n_out4p0;
+
+}
+
+void light() {
+// Output:0
+
+}
+"
+graph_offset = Vector2( -218.975, 91 )
+modes/specular = 4
+nodes/fragment/0/position = Vector2( 400, 140 )
+nodes/fragment/2/node = SubResource( 1 )
+nodes/fragment/2/position = Vector2( -20, 180 )
+nodes/fragment/3/node = SubResource( 2 )
+nodes/fragment/3/position = Vector2( -20, 300 )
+nodes/fragment/4/node = SubResource( 3 )
+nodes/fragment/4/position = Vector2( -20, 360 )
+nodes/fragment/connections = PoolIntArray( 2, 0, 0, 0, 3, 0, 0, 2, 4, 0, 0, 3 )
